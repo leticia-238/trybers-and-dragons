@@ -1,4 +1,6 @@
 abstract class Race {
+  protected static _createdRacesInstances = 0;
+  
   constructor(
     private _name: string,
     private _dexterity: number,
