@@ -8,8 +8,13 @@ class PVE extends Battle {
   ) { super(player); }
   
   fight(): number {
-    this._fighters.forEach((fighter: SimpleFighter) => {
-      let isFightInProgress = this.player.lifePoints > 0;
+    for (let index = 0; 
+      index < this._fighters.length && this.player.lifePoints > 0; 
+      index += 1
+    ) {
+      const fighter: SimpleFighter = this._fighters[index];
+      
+      let isFightInProgress = true;
       
       while (isFightInProgress) {
         this.player.attack(fighter);
@@ -17,7 +22,7 @@ class PVE extends Battle {
         isFightInProgress = this.player.lifePoints > 0 
         && fighter.lifePoints > 0;
       }
-    });
+    }
     return super.fight();
   }
 }
